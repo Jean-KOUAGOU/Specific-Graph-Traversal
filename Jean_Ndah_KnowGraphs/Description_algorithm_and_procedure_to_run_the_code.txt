@@ -1,0 +1,38 @@
+1. DESCRIPTION OF MY ALGORITHM
+
+I considered creating three Python files: Read_graphs.py, Program.py and main.py
+
+
+- The first file contains a single function called "graph" which takes a txt file representing a graph and returns a tuple where the first element is the number of nodes of the graph and the second element is the graph itself represented by a dictionary {node_i: list_of_nodes, ...,} such that for each node_j in list_of_nodes, there exists an edge from node_i to node_j. So the rest of my code assumes graphs to be represented that way.
+
+- The second file contains two functions: "update_reachable_nodes_from" which updates the set of reachable nodes from a given set of nodes, and "Full_exploration_starting_nodes" which uses the first function and outputs in a txt file a minimum set of starting nodes for a full exploration of the graph. More details on these two functions can be found in the Python file "Program.py".
+
+* The Algorithm:
+We want to find a minimum set of starting nodes that ensures that the whole graph can be reached by following the edges of the graph in their direction.
+We can see that all nodes that do not have an incoming edge should be part of the minimum set as they can not be reached from any other node. So my algorithm starts by initializing the minimum set to be the set of all those nodes. I mark these nodes as <<current reachable nodes>>. Next I find the set of all reachable nodes from these currently reachable nodes and add them to the <<current reachable nodes' list>>. So my current reachable nodes have been updated. Now I iterate through the keys (that is, nodes that have an outgoing edge), and in this process, keys that are not in the <<current reachable nodes' list>> are added to the minimum set, and their respective reachable nodes are added to the <<current reachable nodes' list>> including themselves. The iteration stops if all the nodes of the graph have been reached, that is, size_of(current_reachable_nodes) = number of nodes of the graph. 
+
+2. INSTRUCTIONS TO RUN MY CODE:
+
+I sent you a zip file which after extraction should be a folder "Jean_Ndah_KnowGraphs" containing this txt file itself and three folders: Graphs, Program_files and Output_folder. In "Graphs" you will find the three graphs downloaded from the link you sent me; "Program_flies" contains the three Python files mentioned above, and "Output_folder" contains the results (3 txt files) I got for the three graphs, one node per line. To run my code, please do the following:
+
+Extract the folder "Jean_Ndah_KnowGraphs" to the location you want.
+
+If using Linux (Ubuntu or Debian): 
+
+1-Open a terminal and enter into the folder then in "Program_files" by using a sequence of "cd+space+name_folder+Enter" or you just get into the folder Program_files with your cursor and "right click then choose Open in Terminl". 
+2-Now type: python main.py then Enter to run the code. Then new output files will be created in Output_folder.
+
+If using a Python IDE such as Spyder3, PyCharm:
+
+1-Open the IDE and import the extracted folder "Jean_Ndah_KnowGraphs"
+2-Open the folder "Program_files" and run main.py
+
+To use the code on another graph, please copy and paste the txt file representing the graph in the folder "Graphs" then add the following to the main.py file:
+
+path4 = "../Graphs/new_graph_name.txt"
+G4 = graph(path4)
+output_path4 ="../Output_folder/output_g4.txt"
+Full_exploration_starting_nodes(G4, output_path4)
+
+Save the file "Ctrl+S" and run main.py as described above. Finally open Output_folder and get the results.
+
